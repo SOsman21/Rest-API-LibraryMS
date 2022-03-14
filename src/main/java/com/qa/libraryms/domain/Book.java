@@ -9,8 +9,8 @@ import javax.persistence.Id;
 public class Book {
 
 	@Id
-	int ISBN;//ISBN are unique to books so I'm using it as a primary key
-	
+	int ISBN;// ISBN are unique to books so I'm using it as a primary key
+
 	String name;
 	String edition;
 	String author;
@@ -107,7 +107,5 @@ public class Book {
 				&& Objects.equals(genre, other.genre) && Objects.equals(name, other.name)
 				&& Objects.equals(publisher, other.publisher) && quantity == other.quantity;
 	}
-	
-	
 
 }
