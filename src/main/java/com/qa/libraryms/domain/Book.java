@@ -34,11 +34,19 @@ public class Book {
 	}
 
 	public int getIsbn() {
+<<<<<<< HEAD
 		return isbn;
 	}
 
 	public void setIsbn(int isbn) {
 		this.isbn = isbn;
+=======
+		return ISBN;
+	}
+
+	public void setIsbn(int iSBN) {
+		ISBN = iSBN;
+>>>>>>> b0daf599c819124040cfdd2f9bc311222529cc5a
 	}
 
 	public String getName() {
