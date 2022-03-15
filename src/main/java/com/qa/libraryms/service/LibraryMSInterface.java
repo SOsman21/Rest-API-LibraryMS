@@ -1,6 +1,6 @@
 package com.qa.libraryms.service;
 
-import java.util.List;
+import java.util.List; 
 
 import com.qa.libraryms.domain.Book;
 
@@ -10,8 +10,10 @@ public interface LibraryMSInterface<T> {
 	
 	List<Book> read();
 	
-	Book update(int ISBN, Book b);
+	Book readByISBN(int isbn);
 	
-	Book delete(int ISBN);
+	Book update(int isbn, Book b);
+	
+	Book delete(int isbn);
 
 }
