@@ -9,7 +9,7 @@ import javax.persistence.Id;
 public class Book {
 
 	@Id
-	int ISBN;// ISBN are unique to books so I'm using it as a primary key
+	int isbn;// ISBN are unique to books so I'm using it as a primary key
 
 	String name;
 	String edition;
@@ -22,9 +22,9 @@ public class Book {
 		super();
 	}
 
-	public Book(int iSBN, String name, String edition, String author, String genre, String publisher, int quantity) {
+	public Book(int isbn, String name, String edition, String author, String genre, String publisher, int quantity) {
 		super();
-		ISBN = iSBN;
+		this.isbn = isbn;
 		this.name = name;
 		this.edition = edition;
 		this.author = author;
@@ -33,12 +33,12 @@ public class Book {
 		this.quantity = quantity;
 	}
 
-	public int getISBN() {
-		return ISBN;
+	public int getIsbn() {
+		return isbn;
 	}
 
-	public void setISBN(int iSBN) {
-		ISBN = iSBN;
+	public void setIsbn(int isbn) {
+		this.isbn = isbn;
 	}
 
 	public String getName() {
@@ -91,7 +91,7 @@ public class Book {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(ISBN, author, edition, genre, name, publisher, quantity);
+		return Objects.hash(isbn, author, edition, genre, name, publisher, quantity);
 	}
 
 	@Override
@@ -103,7 +103,7 @@ public class Book {
 		if (getClass() != obj.getClass())
 			return false;
 		Book other = (Book) obj;
-		return ISBN == other.ISBN && Objects.equals(author, other.author) && Objects.equals(edition, other.edition)
+		return isbn == other.isbn && Objects.equals(author, other.author) && Objects.equals(edition, other.edition)
 				&& Objects.equals(genre, other.genre) && Objects.equals(name, other.name)
 				&& Objects.equals(publisher, other.publisher) && quantity == other.quantity;
 	}
