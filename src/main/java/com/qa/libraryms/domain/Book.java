@@ -33,11 +33,11 @@ public class Book {
 		this.quantity = quantity;
 	}
 
-	public int getISBN() {
+	public int getIsbn() {
 		return ISBN;
 	}
 
-	public void setISBN(int iSBN) {
+	public void setIsbn(int iSBN) {
 		ISBN = iSBN;
 	}
 

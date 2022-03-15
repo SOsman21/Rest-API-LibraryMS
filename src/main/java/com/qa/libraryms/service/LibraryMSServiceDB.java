@@ -29,7 +29,7 @@ public class LibraryMSServiceDB implements LibraryMSInterface<Integer>{
 	}
 
 	@Override
-	public Book readByISBN(int isbn) {
+	public Book readByIsbn(int isbn) {
 		Optional<Book> opt = this.repo.findById(isbn);
 		return opt.orElse(null);
 	}
