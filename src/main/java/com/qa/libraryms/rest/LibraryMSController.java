@@ -39,7 +39,7 @@ public class LibraryMSController {
 	}
 
 	// READ BY ID
-	@GetMapping("/readById/{id}")
+	@GetMapping("/readByISBN/{id}")
 	public Book getById(@PathVariable int isbn) {
 		return this.service.readByIsbn(isbn);
 	}
