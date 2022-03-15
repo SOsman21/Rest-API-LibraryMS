@@ -9,7 +9,7 @@ import javax.persistence.Id;
 public class Book {
 
 	@Id
-	int isbn;// ISBN are unique to books so I'm using it as a primary key
+	long isbn;// ISBN are unique to books so I'm using it as a primary key
 
 	String name;
 	String edition;
@@ -22,9 +22,9 @@ public class Book {
 		super();
 	}
 
-	public Book(int isbn, String name, String edition, String author, String genre, String publisher, int quantity) {
+	public Book(long l, String name, String edition, String author, String genre, String publisher, int quantity) {
 		super();
-		this.isbn = isbn;
+		this.isbn = l;
 		this.name = name;
 		this.edition = edition;
 		this.author = author;
@@ -33,20 +33,12 @@ public class Book {
 		this.quantity = quantity;
 	}
 
-	public int getIsbn() {
-<<<<<<< HEAD
+	public long getIsbn() {
 		return isbn;
 	}
 
-	public void setIsbn(int isbn) {
+	public void setIsbn(long isbn) {
 		this.isbn = isbn;
-=======
-		return ISBN;
-	}
-
-	public void setIsbn(int iSBN) {
-		ISBN = iSBN;
->>>>>>> b0daf599c819124040cfdd2f9bc311222529cc5a
 	}
 
 	public String getName() {

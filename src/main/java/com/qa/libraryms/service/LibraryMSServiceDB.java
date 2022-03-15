@@ -29,13 +29,13 @@ public class LibraryMSServiceDB implements LibraryMSInterface<Integer>{
 	}
 
 	@Override
-	public Book readByIsbn(int isbn) {
+	public Book readByIsbn(long isbn) {
 		Optional<Book> opt = this.repo.findById(isbn);
 		return opt.orElse(null);
 	}
 
 	@Override
-	public Book update(int isbn, Book b) {
+	public Book update(long isbn, Book b) {
 		Optional<Book> opt =  this.repo.findById(isbn);
 		Book currentBook = opt.get();
 		currentBook.setIsbn(isbn);
@@ -50,11 +50,12 @@ public class LibraryMSServiceDB implements LibraryMSInterface<Integer>{
 	}
 
 	@Override
-	public Book delete(int isbn) {
+	public Book delete(long isbn) {
 		Optional<Book> book = this.repo.findById(isbn);
 		this.repo.deleteById(isbn);
 		return book.orElse(null);
 	}
+
 	
 	
 

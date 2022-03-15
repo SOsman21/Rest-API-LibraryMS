@@ -4,7 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.qa.libraryms.domain.Book;
 
-public interface LibraryMSRepo extends JpaRepository<Book, Integer>{
+public interface LibraryMSRepo extends JpaRepository<Book, Long>{
 	
 
 }
