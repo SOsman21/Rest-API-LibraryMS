@@ -3,14 +3,18 @@ package com.qa.libraryms.domain;
 import java.util.Objects;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 public class Book {
 
 	@Id
-	long isbn;// ISBN are unique to books so I'm using it as a primary key
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	long bookId;
 
+	String isbn;
 	String name;
 	String edition;
 	String author;
@@ -22,9 +26,11 @@ public class Book {
 		super();
 	}
 
-	public Book(long l, String name, String edition, String author, String genre, String publisher, int quantity) {
+	public Book(long bookId, String isbn, String name, String edition, String author, String genre, String publisher,
+			int quantity) {
 		super();
-		this.isbn = l;
+		this.bookId = bookId;
+		this.isbn = isbn;
 		this.name = name;
 		this.edition = edition;
 		this.author = author;
@@ -33,11 +39,30 @@ public class Book {
 		this.quantity = quantity;
 	}
 
-	public long getIsbn() {
+	public Book(String isbn, String name, String edition, String author, String genre, String publisher, int quantity) {
+		super();
+		this.isbn = isbn;
+		this.name = name;
+		this.edition = edition;
+		this.author = author;
+		this.genre = genre;
+		this.publisher = publisher;
+		this.quantity = quantity;
+	}
+
+	public long getBookId() {
+		return bookId;
+	}
+
+	public void setBookId(long bookId) {
+		this.bookId = bookId;
+	}
+
+	public String getIsbn() {
 		return isbn;
 	}
 
-	public void setIsbn(long isbn) {
+	public void setIsbn(String isbn) {
 		this.isbn = isbn;
 	}
 
@@ -91,7 +116,7 @@ public class Book {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(isbn, author, edition, genre, name, publisher, quantity);
+		return Objects.hash(author, bookId, edition, genre, isbn, name, publisher, quantity);
 	}
 
 	@Override
@@ -103,9 +128,12 @@ public class Book {
 		if (getClass() != obj.getClass())
 			return false;
 		Book other = (Book) obj;
-		return isbn == other.isbn && Objects.equals(author, other.author) && Objects.equals(edition, other.edition)
-				&& Objects.equals(genre, other.genre) && Objects.equals(name, other.name)
+		return Objects.equals(author, other.author) && bookId == other.bookId
+				&& Objects.equals(edition, other.edition) && Objects.equals(genre, other.genre)
+				&& Objects.equals(isbn, other.isbn) && Objects.equals(name, other.name)
 				&& Objects.equals(publisher, other.publisher) && quantity == other.quantity;
 	}
+	
+	
 
 }

@@ -21,8 +21,9 @@ import com.qa.libraryms.repo.LibraryMSRepo;
 @ActiveProfiles("test")
 public class LibraryServiceDBTest {
 
-	private Book book;
-	private long isbn = 9781234567897L;
+	private Book input;
+	private Book returned;
+	private long bookId;
 
 	@Autowired
 	private LibraryMSServiceDB service;
@@ -32,22 +33,24 @@ public class LibraryServiceDBTest {
 
 	@BeforeEach
 	void setUp() {
-		book = new Book(9781234567897L, "name1", "edition1", "author1", "genre1", "publisher1", 1);
+		input = new Book("9781234567897", "name1", "edition1", "author1", "genre1", "publisher1", 1);
+		returned = new Book(1L,"9781234567897", "name1", "edition1", "author1", "genre1", "publisher1", 1);
+		bookId = 1L;
 	}
 
 	@Test
 	void createTest() {
-		Mockito.when(this.repo.save(book)).thenReturn(book);
-		assertThat(this.service.create(book)).isEqualTo(book);
+		Mockito.when(this.repo.save(input)).thenReturn(returned);
+		assertThat(this.service.create(input)).isEqualTo(returned);
 
 		// Verify
-		Mockito.verify(this.repo, Mockito.times(1)).save(book);
+		Mockito.verify(this.repo, Mockito.times(1)).save(input);
 	}
 
 	@Test
 	void readAllTest() {
 		List<Book> bookList = new ArrayList<>();
-		bookList.add(book);
+		bookList.add(input);
 		Mockito.when(this.repo.findAll()).thenReturn(bookList);
 		assertThat(this.service.read()).isEqualTo(bookList);
 
@@ -56,42 +59,42 @@ public class LibraryServiceDBTest {
 	}
 
 	@Test
-	void readByIsbnTest() {
-		Optional<Book> opt = Optional.of(book);
-		Mockito.when(this.repo.findById(isbn)).thenReturn(opt);
-		assertThat(this.service.readByIsbn(isbn)).isEqualTo(book);
+	void readByIdTest() {
+		Optional<Book> opt = Optional.of(returned);
+		Mockito.when(this.repo.findById(bookId)).thenReturn(opt);
+		assertThat(this.service.readById(bookId)).isEqualTo(returned);
 
 		// Verify
-		Mockito.verify(this.repo, Mockito.times(1)).findById(isbn);
+		Mockito.verify(this.repo, Mockito.times(1)).findById(bookId);
 	}
 
 	@Test
 	void updateTest() {
-		Book currentBook = new Book(isbn, "name1", "edition1", "author1", "genre1", "publisher1", 1);
-		Optional<Book> opt = Optional.of(book);
+		Book currentBook = new Book("9781234567834", "name1", "edition1", "author1", "genre1", "publisher1", 1);
+		Optional<Book> opt = Optional.of(returned);
 
 		Book updated = new Book(currentBook.getIsbn(), currentBook.getName(), currentBook.getEdition(),
 				currentBook.getAuthor(), currentBook.getGenre(), currentBook.getPublisher(), currentBook.getQuantity());
 
-		Mockito.when(this.repo.findById(isbn)).thenReturn(opt);
+		Mockito.when(this.repo.findById(bookId)).thenReturn(opt);
 		Mockito.when(this.repo.save(updated)).thenReturn(updated);
-		assertThat(this.service.update(isbn, currentBook)).isEqualTo(updated);
+		assertThat(this.service.update(bookId, currentBook)).isEqualTo(updated);
 
 		// Verify
-		Mockito.verify(this.repo, Mockito.times(1)).findById(isbn);
+		Mockito.verify(this.repo, Mockito.times(1)).findById(bookId);
 		Mockito.verify(this.repo, Mockito.times(1)).save(updated);
 	}
 
 	@Test
 	void deleteTest() {
-		Optional<Book> opt = Optional.of(book);
+		Optional<Book> opt = Optional.of(returned);
 
-		Mockito.when(this.repo.findById(isbn)).thenReturn(opt);
-		assertThat(this.service.delete(isbn)).isEqualTo(book);
+		Mockito.when(this.repo.findById(bookId)).thenReturn(opt);
+		assertThat(this.service.delete(bookId)).isEqualTo(returned);
 
 		// Verify
-		Mockito.verify(this.repo, Mockito.times(1)).deleteById(isbn);
-		Mockito.verify(this.repo, Mockito.times(1)).findById(isbn);
+		Mockito.verify(this.repo, Mockito.times(1)).deleteById(bookId);
+		Mockito.verify(this.repo, Mockito.times(1)).findById(bookId);
 
 	}
 }

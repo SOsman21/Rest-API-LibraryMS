@@ -10,10 +10,10 @@ public interface LibraryMSInterface<T> {
 	
 	List<Book> read();
 
-	Book readByIsbn(long isbn);
+	Book readById(long bookId);
 
-	Book update(long isbn, Book b);
+	Book update(long bookId, Book b);
 	
-	Book delete(long isbn);
+	Book delete(long bookId);
 
 }

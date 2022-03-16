@@ -39,21 +39,21 @@ public class LibraryMSController {
 	}
 
 	// READ BY ID
-	@GetMapping("/readByISBN/{id}")
-	public Book getById(@PathVariable int isbn) {
-		return this.service.readByIsbn(isbn);
+	@GetMapping("/readById/{bookId}")
+	public Book getById(@PathVariable long bookId) {
+		return this.service.readById(bookId);
 	}
 
 	// UPDATE
-	@PutMapping("/update/{id}")
-	public Book update(@PathVariable int isbn, @RequestBody Book updated) {
-		return this.service.update(isbn, updated);
+	@PutMapping("/update/{bookId}")
+	public Book update(@PathVariable long bookId, @RequestBody Book updated) {
+		return this.service.update(bookId, updated);
 	}
 
 	// DELETE
-	@DeleteMapping("/delete")
-	public Book delete(@PathVariable int isbn) {
-		return this.service.delete(isbn);
+	@DeleteMapping("/delete/{bookId}")
+	public Book delete(@PathVariable long bookId) {
+		return this.service.delete(bookId);
 	}
 
 }
