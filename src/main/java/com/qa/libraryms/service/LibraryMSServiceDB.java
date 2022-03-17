@@ -10,17 +10,17 @@ import com.qa.libraryms.repo.LibraryMSRepo;
 
 @Service
 public class LibraryMSServiceDB implements LibraryMSInterface<Integer>{
-	
-	private LibraryMSRepo repo;
+
+	private LibraryMSRepo repo; 
 
 	public LibraryMSServiceDB(LibraryMSRepo repo) {
 		super();
 		this.repo = repo;
 	}
-
+	
 	@Override
 	public Book create(Book b) {
-		return this.repo.save(b);
+			return this.repo.save(b);
 	}
 
 	@Override
@@ -36,9 +36,8 @@ public class LibraryMSServiceDB implements LibraryMSInterface<Integer>{
 
 	@Override
 	public Book update(long bookId, Book b) {
-		Optional<Book> opt =  this.repo.findById(bookId);
+		Optional<Book> opt = this.repo.findById(bookId);
 		Book currentBook = opt.get();
-		currentBook.setBookId(b.getBookId());
 		currentBook.setIsbn(b.getIsbn());
 		currentBook.setName(b.getName());
 		currentBook.setEdition(b.getEdition());
@@ -57,7 +56,6 @@ public class LibraryMSServiceDB implements LibraryMSInterface<Integer>{
 		return book.orElse(null);
 	}
 
-	
 	
 
 }

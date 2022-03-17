@@ -1,11 +1,14 @@
 package com.qa.libraryms.rest;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete; 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import org.hamcrest.Matcher;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -16,9 +19,7 @@ import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.ResultMatcher;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.qa.libraryms.domain.Book;
 
@@ -54,7 +55,27 @@ public class LibraryControllerTest {
 		// Test
 		this.mock.perform(request).andExpect(status).andExpect(body);
 	}
+	
+	@Test
+	void readTest() throws Exception {
+		// Request
+		List<Book> books = new ArrayList<>();
+		RequestBuilder request = get("/readAll").contentType(MediaType.APPLICATION_JSON);
 
+		// Response
+		Book savedBook = new Book(1L,"9781234567897", "name1", "edition1", "author1", "genre1", "publisher1", 1);
+		books.add(savedBook);
+		
+		String savedJSON = this.map.writeValueAsString(books);
+
+		ResultMatcher status = status().is2xxSuccessful();
+		ResultMatcher body = (ResultMatcher) content().json(savedJSON);
+
+		// Test
+		this.mock.perform(request).andExpect(status).andExpect(body);
+	}
+
+	
 	@Test
 	void deleteTest() throws Exception {
 		// Request
@@ -63,12 +84,51 @@ public class LibraryControllerTest {
 		RequestBuilder mockRequest = delete("/delete/1");
 
 		// Response
-		ResultMatcher status = status().isOk();
+		ResultMatcher status = status().isCreated();
 		ResultMatcher body = content().json(savedJSON);
 
 		// Test
 		this.mock.perform(mockRequest).andExpect(status).andExpect(body);
 
 	}
+	
+	@Test
+	void readByIdTest() throws Exception {
+		// Request
+		Book book = new Book(1L, "9781234567897", "name1", "edition1", "author1", "genre1", "publisher1", 1);
+		String savedJSON = this.map.writeValueAsString(book);
+		RequestBuilder mockRequest = get("/readById/1");
+
+		// Response
+		ResultMatcher status = status().isCreated();
+		ResultMatcher body = content().json(savedJSON);
+
+		// Test
+		this.mock.perform(mockRequest).andExpect(status).andExpect(body);
+
+	}
+	
+	@Test
+	void updateTest() throws Exception {
+	// Request
+	long bookId = 1L;
+	Book book = new Book("9781234567891", "name2", "edition2", "author2", "genre2", "publisher2", 1);
+	String newJSON = this.map.writeValueAsString(book);
+
+	RequestBuilder request = post("/update/1").contentType(MediaType.APPLICATION_JSON).content(newJSON);
+
+	// Response
+	Book savedBook = new Book(1L, "9781234567891", "name2", "edition2", "author2", "genre2", "publisher2", 1);
+	String savedJSON = this.map.writeValueAsString(savedBook);
+
+	ResultMatcher status = status().isCreated();
+	ResultMatcher body = (ResultMatcher) content().json(savedJSON);
+
+	// Test
+	this.mock.perform(request).andExpect(status).andExpect(body);
+
+	}
+	
+	
 
 }
