@@ -14,7 +14,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ActiveProfiles;
 
-import com.qa.libraryms.LibraryMsApplication;
 import com.qa.libraryms.domain.Book;
 import com.qa.libraryms.repo.LibraryMSRepo;
 
@@ -76,7 +75,7 @@ public class LibraryServiceDBTest {
 
 
 		Book updated = new Book(1L, currentBook.getIsbn(), currentBook.getName(), currentBook.getEdition(),
-
+		currentBook.getAuthor(), currentBook.getGenre(), currentBook.getPublisher(), currentBook.getQuantity());
 		Mockito.when(this.repo.findById(bookId)).thenReturn(opt);
 		Mockito.when(this.repo.save(updated)).thenReturn(updated);
 		assertThat(this.service.update(bookId, currentBook)).isEqualTo(updated);
