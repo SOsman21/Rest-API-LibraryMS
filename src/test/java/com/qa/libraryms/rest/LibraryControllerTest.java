@@ -55,7 +55,27 @@ public class LibraryControllerTest {
 		// Test
 		this.mock.perform(request).andExpect(status).andExpect(body);
 	}
+	
+	@Test
+	void readTest() throws Exception {
+		// Request
+		List<Book> books = new ArrayList<>();
+		RequestBuilder request = get("/readAll").contentType(MediaType.APPLICATION_JSON);
 
+		// Response
+		Book savedBook = new Book(1L,"9781234567897", "name1", "edition1", "author1", "genre1", "publisher1", 1);
+		books.add(savedBook);
+		
+		String savedJSON = this.map.writeValueAsString(books);
+
+		ResultMatcher status = status().is2xxSuccessful();
+		ResultMatcher body = (ResultMatcher) content().json(savedJSON);
+
+		// Test
+		this.mock.perform(request).andExpect(status).andExpect(body);
+	}
+
+	
 	@Test
 	void readTest() throws Exception {
 		// Request
@@ -99,12 +119,51 @@ public class LibraryControllerTest {
 		RequestBuilder mockRequest = delete("/delete/1");
 
 		// Response
-		ResultMatcher status = status().isOk();
+		ResultMatcher status = status().isCreated();
 		ResultMatcher body = content().json(savedJSON);
 
 		// Test
 		this.mock.perform(mockRequest).andExpect(status).andExpect(body);
 
 	}
+	
+	@Test
+	void readByIdTest() throws Exception {
+		// Request
+		Book book = new Book(1L, "9781234567897", "name1", "edition1", "author1", "genre1", "publisher1", 1);
+		String savedJSON = this.map.writeValueAsString(book);
+		RequestBuilder mockRequest = get("/readById/1");
+
+		// Response
+		ResultMatcher status = status().isCreated();
+		ResultMatcher body = content().json(savedJSON);
+
+		// Test
+		this.mock.perform(mockRequest).andExpect(status).andExpect(body);
+
+	}
+	
+	@Test
+	void updateTest() throws Exception {
+	// Request
+	long bookId = 1L;
+	Book book = new Book("9781234567891", "name2", "edition2", "author2", "genre2", "publisher2", 1);
+	String newJSON = this.map.writeValueAsString(book);
+
+	RequestBuilder request = post("/update/1").contentType(MediaType.APPLICATION_JSON).content(newJSON);
+
+	// Response
+	Book savedBook = new Book(1L, "9781234567891", "name2", "edition2", "author2", "genre2", "publisher2", 1);
+	String savedJSON = this.map.writeValueAsString(savedBook);
+
+	ResultMatcher status = status().isCreated();
+	ResultMatcher body = (ResultMatcher) content().json(savedJSON);
+
+	// Test
+	this.mock.perform(request).andExpect(status).andExpect(body);
+
+	}
+	
+	
 
 }
