@@ -74,7 +74,7 @@ public class LibraryServiceDBTest {
 		Optional<Book> opt = Optional.of(returned);
 
 		Book updated = new Book(currentBook.getIsbn(), currentBook.getName(), currentBook.getEdition(),
-				currentBook.getAuthor(), currentBook.getGenre(), currentBook.getPublisher(), currentBook.getQuantity());
+		currentBook.getAuthor(), currentBook.getGenre(), currentBook.getPublisher(), currentBook.getQuantity());
 
 		Mockito.when(this.repo.findById(bookId)).thenReturn(opt);
 		Mockito.when(this.repo.save(updated)).thenReturn(updated);
@@ -96,5 +96,17 @@ public class LibraryServiceDBTest {
 		Mockito.verify(this.repo, Mockito.times(1)).deleteById(bookId);
 		Mockito.verify(this.repo, Mockito.times(1)).findById(bookId);
 
+	}
+	
+	@Test
+	void updateQuantityTest() {
+		Book updated = new Book(2L,"9781234567897", "name1", "edition1", "author1", "genre1", "publisher1", 2);
+
+		Mockito.when(this.repo.findBookByIsbn(input.getIsbn()));
+		Mockito.when(this.repo.save(updated));
+		assertThat(this.service.create(input)).isEqualTo((updated));
+
+		// Verify
+		Mockito.verify(this.repo, Mockito.times(1)).save(updated);
 	}
 }

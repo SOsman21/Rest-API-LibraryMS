@@ -1,6 +1,6 @@
 package com.qa.libraryms.service;
 
-import java.util.List; 
+import java.util.List;
 
 import com.qa.libraryms.domain.Book;
 
@@ -15,5 +15,8 @@ public interface LibraryMSInterface<T> {
 	Book update(long bookId, Book b);
 	
 	Book delete(long bookId);
+
+	Book updateQuantity(Book b);
+	
 
 }

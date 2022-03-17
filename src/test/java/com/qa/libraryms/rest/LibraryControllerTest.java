@@ -5,7 +5,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import org.hamcrest.Matcher;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -16,9 +15,7 @@ import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.ResultMatcher;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.qa.libraryms.domain.Book;
 
@@ -63,12 +60,13 @@ public class LibraryControllerTest {
 		RequestBuilder mockRequest = delete("/delete/1");
 
 		// Response
-		ResultMatcher status = status().isOk();
+		ResultMatcher status = status().isCreated();
 		ResultMatcher body = content().json(savedJSON);
 
 		// Test
 		this.mock.perform(mockRequest).andExpect(status).andExpect(body);
 
 	}
+	
 
 }

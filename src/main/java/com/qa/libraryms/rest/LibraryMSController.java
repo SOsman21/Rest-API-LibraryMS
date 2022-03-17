@@ -19,14 +19,14 @@ import com.qa.libraryms.service.LibraryMSServiceDB;
 
 @RestController
 public class LibraryMSController {
-	
+
 	private LibraryMSServiceDB service;
 
 	public LibraryMSController(LibraryMSServiceDB service) {
 		super();
 		this.service = service;
 	}
-	
+
 	@PostMapping("/create")
 	public ResponseEntity<Book> createAnimal(@RequestBody Book b) {
 		return new ResponseEntity<Book>(this.service.create(b), HttpStatus.CREATED);

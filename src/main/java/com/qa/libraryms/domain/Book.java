@@ -25,6 +25,8 @@ public class Book {
 	public Book() {
 		super();
 	}
+	
+	
 
 	public Book(long bookId, String isbn, String name, String edition, String author, String genre, String publisher,
 			int quantity) {
