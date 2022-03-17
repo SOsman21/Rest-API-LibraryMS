@@ -2,8 +2,6 @@ package com.qa.libraryms.rest;
 
 import java.util.List;
 
-import javax.websocket.server.PathParam;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -40,7 +38,7 @@ public class LibraryMSController {
 
 	// READ BY ID
 	@GetMapping("/readById/{bookId}")
-	public ResponseEntity<Book> getById(@PathVariable long bookId) {
+	public ResponseEntity<Book> readById(@PathVariable long bookId) {
 		return new ResponseEntity<Book>(this.service.readById(bookId), HttpStatus.CREATED);
 	}
 

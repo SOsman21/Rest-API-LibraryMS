@@ -11,7 +11,7 @@ import com.qa.libraryms.repo.LibraryMSRepo;
 @Service
 public class LibraryMSServiceDB implements LibraryMSInterface<Integer>{
 
-	private LibraryMSRepo repo;
+	private LibraryMSRepo repo; 
 
 	public LibraryMSServiceDB(LibraryMSRepo repo) {
 		super();
@@ -20,12 +20,7 @@ public class LibraryMSServiceDB implements LibraryMSInterface<Integer>{
 	
 	@Override
 	public Book create(Book b) {
-		String exists = this.repo.findBookByIsbn(b.getIsbn()); 
-		if (exists == null) {
 			return this.repo.save(b);
-		} else {
-			return this.repo.save(updateQuantity(b));
-		}
 	}
 
 	@Override
@@ -43,7 +38,6 @@ public class LibraryMSServiceDB implements LibraryMSInterface<Integer>{
 	public Book update(long bookId, Book b) {
 		Optional<Book> opt = this.repo.findById(bookId);
 		Book currentBook = opt.get();
-		currentBook.setBookId(b.getBookId());
 		currentBook.setIsbn(b.getIsbn());
 		currentBook.setName(b.getName());
 		currentBook.setEdition(b.getEdition());
@@ -53,21 +47,6 @@ public class LibraryMSServiceDB implements LibraryMSInterface<Integer>{
 		currentBook.setPublisher(b.getPublisher());
 		currentBook.setQuantity(b.getQuantity());
 		return this.repo.save(currentBook);
-	}
-	
-	@Override
-	public Book updateQuantity(Book b) {
-		int quantity = b.getQuantity() + 1;
-		b.setBookId(b.getBookId());
-		b.setIsbn(b.getIsbn());
-		b.setName(b.getName());
-		b.setEdition(b.getEdition());
-		b.setAuthor(b.getAuthor());
-		b.setAuthor(b.getAuthor());
-		b.setGenre(b.getGenre());
-		b.setPublisher(b.getPublisher());
-		b.setQuantity(quantity);
-		return b;
 	}
 
 	@Override

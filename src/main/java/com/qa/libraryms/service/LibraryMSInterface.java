@@ -16,7 +16,5 @@ public interface LibraryMSInterface<T> {
 	
 	Book delete(long bookId);
 
-	Book updateQuantity(Book b);
-	
 
 }

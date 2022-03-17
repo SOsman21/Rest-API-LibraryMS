@@ -14,6 +14,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ActiveProfiles;
 
+import com.qa.libraryms.LibraryMsApplication;
 import com.qa.libraryms.domain.Book;
 import com.qa.libraryms.repo.LibraryMSRepo;
 
@@ -98,15 +99,5 @@ public class LibraryServiceDBTest {
 
 	}
 	
-	@Test
-	void updateQuantityTest() {
-		Book updated = new Book(2L,"9781234567897", "name1", "edition1", "author1", "genre1", "publisher1", 2);
 
-		Mockito.when(this.repo.findBookByIsbn(input.getIsbn()));
-		Mockito.when(this.repo.save(updated));
-		assertThat(this.service.create(input)).isEqualTo((updated));
-
-		// Verify
-		Mockito.verify(this.repo, Mockito.times(1)).save(updated);
-	}
 }
