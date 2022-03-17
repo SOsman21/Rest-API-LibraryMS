@@ -1,6 +1,6 @@
 package com.qa.libraryms.rest;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete; 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -107,28 +107,6 @@ public class LibraryControllerTest {
 		this.mock.perform(mockRequest).andExpect(status).andExpect(body);
 
 	}
-	
-	@Test
-	void updateTest() throws Exception {
-	// Request
-	long bookId = 1L;
-	Book book = new Book("9781234567891", "name2", "edition2", "author2", "genre2", "publisher2", 1);
-	String newJSON = this.map.writeValueAsString(book);
-
-	RequestBuilder request = post("/update/1").contentType(MediaType.APPLICATION_JSON).content(newJSON);
-
-	// Response
-	Book savedBook = new Book(1L, "9781234567891", "name2", "edition2", "author2", "genre2", "publisher2", 1);
-	String savedJSON = this.map.writeValueAsString(savedBook);
-
-	ResultMatcher status = status().isCreated();
-	ResultMatcher body = (ResultMatcher) content().json(savedJSON);
-
-	// Test
-	this.mock.perform(request).andExpect(status).andExpect(body);
-
-	}
-	
 	
 
 }

@@ -14,7 +14,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ActiveProfiles;
 
-import com.qa.libraryms.LibraryMsApplication;
 import com.qa.libraryms.domain.Book;
 import com.qa.libraryms.repo.LibraryMSRepo;
 
@@ -71,12 +70,12 @@ public class LibraryServiceDBTest {
 
 	@Test
 	void updateTest() {
-		Book currentBook = new Book("9781234567834", "name1", "edition1", "author1", "genre1", "publisher1", 1);
+		Book currentBook = new Book(1L,"9781234567834", "name1", "edition1", "author1", "genre1", "publisher1", 1);
 		Optional<Book> opt = Optional.of(returned);
 
-		Book updated = new Book(currentBook.getIsbn(), currentBook.getName(), currentBook.getEdition(),
-		currentBook.getAuthor(), currentBook.getGenre(), currentBook.getPublisher(), currentBook.getQuantity());
 
+		Book updated = new Book(1L, currentBook.getIsbn(), currentBook.getName(), currentBook.getEdition(),
+		currentBook.getAuthor(), currentBook.getGenre(), currentBook.getPublisher(), currentBook.getQuantity());
 		Mockito.when(this.repo.findById(bookId)).thenReturn(opt);
 		Mockito.when(this.repo.save(updated)).thenReturn(updated);
 		assertThat(this.service.update(bookId, currentBook)).isEqualTo(updated);
@@ -85,7 +84,7 @@ public class LibraryServiceDBTest {
 		Mockito.verify(this.repo, Mockito.times(1)).findById(bookId);
 		Mockito.verify(this.repo, Mockito.times(1)).save(updated);
 	}
-
+	
 	@Test
 	void deleteTest() {
 		Optional<Book> opt = Optional.of(returned);
