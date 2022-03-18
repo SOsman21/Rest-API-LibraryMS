@@ -2,13 +2,17 @@
 [Link to: Jira Board](https://saamiyaosman.atlassian.net/jira/software/c/projects/DFE/boards/2)
 ## Initial Questions
 ##### Why are we doing this?
+I am doing this project to implement the Java we have learnt into a practical application hence I've created my Library MS.
 
 ##### How I expected the challenge to go. 
+I expected to get my program to be fully functional with some custom queries and relevant tests to also be included.
 
 ##### What went well?
 I managed to create the MVP for this project so the Library MS can do all the CRUD functionality via Postman as well as all the tests for them have passed. Plus I managed to get testing to hit over 80% coverage.
+
 ##### What didn't go as planned? 
 During this project I tried to add a custom query that would check if a book being created already existed and if it did would add 1 to the quantity. Whe I tried to implement this method I could not get it t work and ultimately since it ws dependant on other queries some of the CRUD functions that were previously working started to throw up errors. Plus I had some issues with my branches since I was trying to get used to using a feature branch model and sometime would end up pulling branches back to the dev when I was not intending to.
+
 ##### Possible improvements for future revisions of the project. 
 I would try to re-implement my custom query and a few other queries I wanted to add but did not get the time to do. Plus, I would try to add a front end instead of just using Postman to run my queries.
 
@@ -82,11 +86,11 @@ This is the table after the query is run and bookId 8 has been deleted.
 
 ## Testing
 ### Test Results
-Testing and refactoring code is in the documentation folder and final test reults are in the screenshot below.
+Testing and refactoring of the code is in the documentation folder and final test reults are in the screenshot below.
 
 ![Screenshot (15)](https://user-images.githubusercontent.com/98022076/158997149-b8415838-3225-47ec-9354-99a46a891ce3.png)
 
 ### Coverage
-Below I've added my coverage report screenshots.
+I've added my coverage report in the following screenshot.
 
 ![Screenshot (14)](https://user-images.githubusercontent.com/98022076/158985333-9bb4a428-b7e5-401a-b2bd-b60265f55e00.png)
