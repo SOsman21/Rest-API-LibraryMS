@@ -2,11 +2,15 @@
 [Link to: Jira Board](https://saamiyaosman.atlassian.net/jira/software/c/projects/DFE/boards/2)
 ## Initial Questions
 ##### Why are we doing this?
-##### How I expected the challenge to go. 
-##### What went well?
-##### What didn't go as planned? 
-##### Possible improvements for future revisions of the project. 
 
+##### How I expected the challenge to go. 
+
+##### What went well?
+I managed to create the MVP for this project so the Library MS can do all the CRUD functionality via Postman as well as all the tests for them have passed. Plus I managed to get testing to hit over 80% coverage.
+##### What didn't go as planned? 
+During this project I tried to add a custom query that would check if a book being created already existed and if it did would add 1 to the quantity. Whe I tried to implement this method I could not get it t work and ultimately since it ws dependant on other queries some of the CRUD functions that were previously working started to throw up errors. Plus I had some issues with my branches since I was trying to get used to using a feature branch model and sometime would end up pulling branches back to the dev when I was not intending to.
+##### Possible improvements for future revisions of the project. 
+I would try to re-implement my custom query and a few other queries I wanted to add but did not get the time to do. Plus, I would try to add a front end instead of just using Postman to run my queries.
 
 ## Postman, API and Database Functioning
 ### CREATE
