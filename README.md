@@ -15,7 +15,7 @@ This screenshot shows the Postman request adding a new book to the library and t
 
 ![Screenshot (17)](https://user-images.githubusercontent.com/98022076/158997473-f25468dd-179d-4d11-9ca3-135da02046e8.png)
 
-#### Changes to Database
+#### Changes to the Database
 This is what the database looked like before the query.
 
 ![Screenshot (37)](https://user-images.githubusercontent.com/98022076/159002439-59f24033-8aa3-40e0-bc39-2c677a084b52.png)
@@ -31,7 +31,7 @@ This screenshot shows the Postman request reading all the values from the librar
 
 ![Screenshot (21)](https://user-images.githubusercontent.com/98022076/158998680-c95d270e-23ed-4ef0-a447-da559770f974.png)
 
-#### Changes to Database
+#### Changes to the Database
 This command is a GET command so does not persist any changes to the database.
 
 
@@ -41,7 +41,7 @@ This the postman request reading the record for the specific bookId from the dat
 
 ![Screenshot (23)](https://user-images.githubusercontent.com/98022076/158999403-795a9400-08be-4516-9263-b11bbc337901.png)
 
-#### Changes to Database
+#### Changes to the Database
 This command is a GET command so does not persist any changes to the database.
 
 
@@ -52,7 +52,7 @@ This the postman request requesting to change the quantity from 8 to 7 in the da
 ![Screenshot (25)](https://user-images.githubusercontent.com/98022076/158999957-3f1c6454-87cb-4f50-8330-c131266f4c7b.png)
 
 
-#### Changes to Database
+#### Changes to the Database
 This is the old record in the database looked like with quantity value 8.
 
 ![Screenshot (31)](https://user-images.githubusercontent.com/98022076/159001449-69a61332-aa9b-47ef-9a33-462152afad66.png)
@@ -67,7 +67,7 @@ This the postman request to delete bookid 8 from the database and the API return
 
 ![Screenshot (33)](https://user-images.githubusercontent.com/98022076/159001741-52aa4bad-177a-4cc8-a144-63a4c8c2096a.png)
 
-#### Changes to Database
+#### Changes to the Database
 This is the record in the table before the query is run.
 
 ![Screenshot (27)](https://user-images.githubusercontent.com/98022076/159000706-ee96bf51-9391-48a0-9ca1-ed754e7b8f76.png)
