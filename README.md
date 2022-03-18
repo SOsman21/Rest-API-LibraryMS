@@ -8,7 +8,7 @@
 ##### Possible improvements for future revisions of the project. 
 
 
-## Postman Requests & Database Output
+## Postman, API and Database Functioning
 ### CREATE
 #### Postman Request
 This screenshot shows the Postman request adding a new book to the library and the API returning the value as its stored in the database(thus all the data alongside its primary key value).
