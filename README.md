@@ -18,4 +18,5 @@
 ##### Testing & Refactoring
 ##### Final Tests
 ##### Coverage
+Below I've added my coverage report
 ![Screenshot (14)](https://user-images.githubusercontent.com/98022076/158985333-9bb4a428-b7e5-401a-b2bd-b60265f55e00.png)
